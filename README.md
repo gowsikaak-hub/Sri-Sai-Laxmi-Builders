@@ -42,6 +42,43 @@ Create a Vercel project from this repository and set its **Root Directory** to
 Set `VITE_API_URL` to the deployed backend API origin ending in `/api` (for
 example, `https://api.example.com/api`) before deploying.
 
+### Deploying the backend to Render
+
+Create a Render **Web Service** from this repository and set its **Root
+Directory** to `backend`. Use these settings:
+
+- Build command: `npm install`
+- Start command: `npm start`
+- Health check path: `/api/health`
+
+Set these Render environment variables:
+
+```text
+NODE_ENV=production
+FRONTEND_URL=https://your-project.vercel.app
+JWT_SECRET=<a random secret with at least 32 characters>
+ADMIN_USERNAME=<your admin username>
+ADMIN_PASSWORD=<a strong password with at least 12 characters>
+```
+
+If you use a Vercel preview URL, add it to `FRONTEND_URL` as a comma-separated
+origin, for example:
+
+```text
+https://your-project.vercel.app,https://your-project-git-main-your-team.vercel.app
+```
+
+After the Render service is live, set this Vercel environment variable and
+redeploy:
+
+```text
+VITE_API_URL=https://your-render-service.onrender.com/api
+```
+
+Do not add a trailing slash to either origin. The backend enables credentials
+and uses a secure cross-site cookie in production so admin login persists from
+Vercel to Render.
+
 ## 4. Included features
 - Public website loads company profile, services and projects from the backend database.
 - Contact form saves enquiries to SQLite.
