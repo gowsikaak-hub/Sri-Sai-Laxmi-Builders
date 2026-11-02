@@ -35,6 +35,13 @@ npm run dev
 Open the frontend URL shown by Vite (normally http://localhost:5173).
 Admin page: http://localhost:5173/admin
 
+### Deploying the frontend to Vercel
+
+Create a Vercel project from this repository and set its **Root Directory** to
+`frontend`. Vercel will use the included Vite configuration and `vercel.json`.
+Set `VITE_API_URL` to the deployed backend API origin ending in `/api` (for
+example, `https://api.example.com/api`) before deploying.
+
 ## 4. Included features
 - Public website loads company profile, services and projects from the backend database.
 - Contact form saves enquiries to SQLite.
